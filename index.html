@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İstikbal Bayi Finans v3</title>
+<title>İstikbal Bayi Finans v4</title>
+
 <style>
 :root{
   --bg:#f5f6f8;
-  --panel:#fff;
+  --panel:#ffffff;
   --ink:#17191d;
   --muted:#6f7680;
   --line:#e4e7eb;
@@ -17,43 +18,63 @@
   --warn:#b66a00;
   --bad:#b42318
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Segoe UI,Arial,sans-serif;
   background:var(--bg);
   color:var(--ink)
 }
+
 header{
   background:#101114;
-  color:#fff;
+  color:white;
   padding:18px 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px
+  gap:15px
 }
-header h1{margin:0;font-size:22px}
-header p{margin:3px 0 0;color:#bbb}
+
+header h1{
+  margin:0;
+  font-size:22px
+}
+
+header p{
+  margin:4px 0 0;
+  color:#bbb
+}
+
 button,.filebtn{
   border:0;
   border-radius:8px;
   padding:9px 13px;
   background:var(--brand);
-  color:#fff;
+  color:white;
   font-weight:700;
   cursor:pointer
 }
-button:hover,.filebtn:hover{background:var(--brand2)}
-.filebtn input{display:none}
+
+button:hover,.filebtn:hover{
+  background:var(--brand2)
+}
+
+.filebtn input{
+  display:none
+}
+
 nav{
   display:flex;
   gap:3px;
-  padding:0 14px;
-  background:#fff;
+  background:white;
   border-bottom:1px solid var(--line);
+  padding:0 14px;
   overflow:auto
 }
+
 nav button{
   background:transparent;
   color:#555;
@@ -61,88 +82,126 @@ nav button{
   border-bottom:3px solid transparent;
   white-space:nowrap
 }
+
 nav button.active{
   color:var(--brand);
   border-bottom-color:var(--brand)
 }
-main{padding:18px}
-.panel{display:none}
-.panel.active{display:block}
+
+main{
+  padding:18px
+}
+
+.panel{
+  display:none
+}
+
+.panel.active{
+  display:block
+}
+
 .cards{
   display:grid;
   grid-template-columns:repeat(6,1fr);
   gap:10px;
   margin-bottom:14px
 }
+
 .card{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:11px;
   padding:14px
 }
+
 .card span{
   display:block;
   color:var(--muted);
   font-size:12px;
-  margin-bottom:11px
-}
-.card strong{font-size:20px}
-.accent{border-top:4px solid var(--brand)}
-.grid2{
-  display:grid;
-  grid-template-columns:1.35fr 1fr;
-  gap:14px
-}
-.box{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:11px;
-  padding:14px
-}
-.boxtitle{
-  font-weight:800;
   margin-bottom:10px
 }
-.advice p{
-  margin:0 0 8px;
-  padding:9px 11px;
-  border-radius:7px;
-  background:#f7f8fa
+
+.card strong{
+  font-size:20px
 }
-.advice .bad{
-  background:#fff0ee;
-  color:#8d2017
+
+.card.accent{
+  border-top:4px solid var(--brand)
 }
-.advice .warn{
-  background:#fff7e8;
-  color:#7c4b00
+
+.card.good{
+  border-top:4px solid var(--ok)
 }
-.advice .ok{
-  background:#eef9f2;
-  color:#145c3b
-}
+
 .accounts{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
   margin-bottom:14px
 }
+
 .account{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:11px;
   padding:13px
 }
-.account h3{margin:0 0 8px}
+
+.account h3{
+  margin:0 0 9px
+}
+
 .row{
   display:flex;
   justify-content:space-between;
   margin:5px 0
 }
+
 .available{
-  font-weight:800;
-  color:var(--ok)
+  color:var(--ok);
+  font-weight:800
 }
+
+.grid2{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:14px
+}
+
+.box{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:14px
+}
+
+.boxtitle{
+  font-weight:800;
+  margin-bottom:10px
+}
+
+.advice p{
+  margin:0 0 8px;
+  padding:9px 11px;
+  border-radius:7px;
+  background:#f7f8fa
+}
+
+.advice .bad{
+  background:#fff0ee;
+  color:#8d2017
+}
+
+.advice .warn{
+  background:#fff7e8;
+  color:#7c4b00
+}
+
+.advice .ok{
+  background:#eef9f2;
+  color:#145c3b
+}
+
 .sectionhead{
   display:flex;
   justify-content:space-between;
@@ -150,40 +209,53 @@ main{padding:18px}
   gap:12px;
   margin-bottom:12px
 }
-.sectionhead h2{margin:0}
+
+.sectionhead h2{
+  margin:0
+}
+
 .sectionhead p{
   margin:3px 0 0;
   color:var(--muted)
 }
+
 .tablewrap{
   overflow:auto;
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:11px
 }
+
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:900px
+  min-width:950px
 }
+
 th,td{
   padding:10px;
   border-bottom:1px solid var(--line);
   text-align:left;
   font-size:13px
 }
+
 th{
   background:#f8f9fb;
   color:#616871;
   text-transform:uppercase;
   font-size:11px
 }
+
 .small{
   padding:5px 8px;
   font-size:11px;
   background:#2d3138
 }
-.danger{background:#a12a21}
+
+.danger{
+  background:#a12a21
+}
+
 .tag{
   padding:4px 7px;
   border-radius:999px;
@@ -191,14 +263,22 @@ th{
   font-size:11px;
   display:inline-block
 }
+
 .tag.bad{
   background:#fff0ee;
   color:#8d2017
 }
+
 .tag.ok{
   background:#eef9f2;
   color:#145c3b
 }
+
+.tag.warn{
+  background:#fff7e8;
+  color:#7c4b00
+}
+
 .modal{
   position:fixed;
   inset:0;
@@ -209,14 +289,19 @@ th{
   padding:16px;
   z-index:10
 }
-.hidden{display:none}
+
+.hidden{
+  display:none
+}
+
 .modalcard{
-  background:#fff;
+  background:white;
   border-radius:13px;
-  width:min(760px,100%);
-  max-height:90vh;
+  width:min(800px,100%);
+  max-height:92vh;
   overflow:auto
 }
+
 .modalhead{
   display:flex;
   justify-content:space-between;
@@ -224,20 +309,32 @@ th{
   padding:14px 16px;
   border-bottom:1px solid var(--line)
 }
-.modalhead h3{margin:0}
-.modalbody{padding:16px}
+
+.modalhead h3{
+  margin:0
+}
+
+.modalbody{
+  padding:16px
+}
+
 .form{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:11px
 }
-.form .full{grid-column:1/-1}
+
+.form .full{
+  grid-column:1/-1
+}
+
 label{
   font-size:13px;
   font-weight:600;
   color:#444
 }
-input,select{
+
+input,select,textarea{
   width:100%;
   padding:9px 10px;
   border:1px solid #cfd4da;
@@ -245,13 +342,23 @@ input,select{
   margin-top:4px;
   font:inherit
 }
+
+textarea{
+  min-height:80px;
+  resize:vertical
+}
+
 .actions{
   display:flex;
   justify-content:flex-end;
   gap:7px;
   margin-top:14px
 }
-.secondary{background:#666}
+
+.secondary{
+  background:#666
+}
+
 .uprow{
   display:grid;
   grid-template-columns:110px 1fr 130px;
@@ -259,16 +366,26 @@ input,select{
   padding:8px 0;
   border-bottom:1px solid var(--line)
 }
-.uprow strong{text-align:right}
+
+.uprow strong{
+  text-align:right
+}
+
 .empty{
   text-align:center;
   color:var(--muted);
   padding:16px
 }
+
 @media(max-width:1100px){
   .cards{grid-template-columns:repeat(3,1fr)}
   .grid2{grid-template-columns:1fr}
   .accounts{grid-template-columns:1fr}
+}
+
+@media(max-width:650px){
+  .cards{grid-template-columns:1fr 1fr}
+  .form{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -278,10 +395,12 @@ input,select{
 <header>
   <div>
     <h1>İstikbal Bayi Finans & Karlılık Merkezi</h1>
-    <p>Reims · Finans Uzmanı Paneli</p>
+    <p>Reims · Finans Uzmanı Paneli v4</p>
   </div>
+
   <div>
     <button onclick="backup()">Yedek Al</button>
+
     <label class="filebtn">
       Yedek Yükle
       <input type="file" id="restore" accept=".json">
@@ -292,6 +411,7 @@ input,select{
 <nav>
   <button class="active" data-tab="dash">Patron Ekranı</button>
   <button data-tab="cash">Banka / Kasa</button>
+  <button data-tab="collections">Tahsilatlar</button>
   <button data-tab="suppliers">Tedarikçiler</button>
   <button data-tab="expenses">Ödemeler / Giderler</button>
   <button data-tab="products">Ürün Karlılığı</button>
@@ -304,18 +424,19 @@ input,select{
 <section id="dash" class="panel active">
 
   <div class="cards">
-    <div class="card">
-      <span>Mevcut Toplam</span>
-      <strong id="dCurrent">0 €</strong>
-    </div>
 
     <div class="card">
-      <span>Bekleyen Sonrası</span>
+      <span>Kullanılabilir Banka/Kasa</span>
       <strong id="dAvail">0 €</strong>
     </div>
 
+    <div class="card good">
+      <span>30 Gün Beklenen Tahsilat</span>
+      <strong id="dCollect30">0 €</strong>
+    </div>
+
     <div class="card">
-      <span>30 Günlük Zorunlu Ödeme</span>
+      <span>30 Günlük Ödemeler</span>
       <strong id="dDue30">0 €</strong>
     </div>
 
@@ -330,40 +451,48 @@ input,select{
     </div>
 
     <div class="card accent">
-      <span>Gerçek Serbest Para</span>
+      <span>Tahmini Gerçek Nakit</span>
       <strong id="dFree">0 €</strong>
     </div>
+
   </div>
 
   <div class="accounts" id="accountCards"></div>
 
   <div class="grid2">
+
     <div class="box">
       <div class="boxtitle">Finans Uzmanı Yorumu</div>
       <div id="advice" class="advice"></div>
     </div>
 
     <div class="box">
-      <div class="boxtitle">Yaklaşan Ödemeler</div>
+      <div class="boxtitle">Yaklaşan Para Hareketleri</div>
       <div id="upcoming"></div>
     </div>
+
   </div>
 
 </section>
 
+
 <section id="cash" class="panel">
 
   <div class="sectionhead">
+
     <div>
       <h2>Banka / Kasa</h2>
-      <p>Mevcut ve bekleyen işlemler sonrası kullanılabilir bakiye.</p>
+      <p>Mevcut bakiye, bekleyen işlemler ve gerçek kullanılabilir para.</p>
     </div>
 
     <button onclick="accountModal()">+ Hesap Ekle</button>
+
   </div>
 
   <div class="tablewrap">
+
     <table>
+
       <thead>
         <tr>
           <th>Hesap</th>
@@ -374,27 +503,96 @@ input,select{
           <th></th>
         </tr>
       </thead>
+
       <tbody id="accountRows"></tbody>
+
     </table>
+
   </div>
 
 </section>
 
+
+<section id="collections" class="panel">
+
+  <div class="sectionhead">
+
+    <div>
+      <h2>Tahsilatlar</h2>
+      <p>Müşteriden veya ödeme kuruluşundan gelecek paraları takip et.</p>
+    </div>
+
+    <button onclick="collectionModal()">+ Yeni Tahsilat</button>
+
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <span>Toplam Beklenen</span>
+      <strong id="cTotal">0 €</strong>
+    </div>
+
+    <div class="card">
+      <span>7 Gün İçinde</span>
+      <strong id="c7">0 €</strong>
+    </div>
+
+    <div class="card good">
+      <span>30 Gün İçinde</span>
+      <strong id="c30">0 €</strong>
+    </div>
+
+    <div class="card">
+      <span>60 Gün İçinde</span>
+      <strong id="c60">0 €</strong>
+    </div>
+
+  </div>
+
+  <div class="tablewrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Beklenen Tarih</th>
+          <th>Müşteri / Kaynak</th>
+          <th>Ödeme Türü</th>
+          <th>Beklenen</th>
+          <th>Tahsil Edilen</th>
+          <th>Kalan</th>
+          <th>Durum</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody id="collectionRows"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
 <section id="suppliers" class="panel">
 
   <div class="sectionhead">
+
     <div>
       <h2>Tedarikçiler</h2>
       <p>İstikbal faturaları, otomatik 2 aylık vade ve gecikme takibi.</p>
     </div>
 
     <button onclick="invoiceModal()">+ Yeni Fatura</button>
+
   </div>
 
   <div class="cards">
 
     <div class="card">
-      <span>İstikbal Toplam Borç</span>
+      <span>Toplam Tedarikçi Borcu</span>
       <strong id="sTotal">0 €</strong>
     </div>
 
@@ -416,7 +614,9 @@ input,select{
   </div>
 
   <div class="tablewrap">
+
     <table>
+
       <thead>
         <tr>
           <th>Tedarikçi</th>
@@ -430,56 +630,75 @@ input,select{
           <th></th>
         </tr>
       </thead>
+
       <tbody id="invoiceRows"></tbody>
+
     </table>
+
   </div>
 
 </section>
 
+
 <section id="expenses" class="panel">
 
   <div class="sectionhead">
+
     <div>
       <h2>Ödemeler / Giderler</h2>
-      <p>Kira, maaş, URSSAF, kredi, fatura ve diğer ödemeler.</p>
+      <p>Kira, maaş, URSSAF, kredi, sigorta, enerji ve diğer faturalar.</p>
     </div>
 
-    <button onclick="expenseModal()">+ Yeni Ödeme</button>
+    <button onclick="expenseModal()">+ Yeni Gider / Fatura</button>
+
   </div>
 
   <div class="tablewrap">
+
     <table>
+
       <thead>
         <tr>
+          <th>Fatura No</th>
+          <th>Fatura Tarihi</th>
           <th>Vade</th>
           <th>Kategori</th>
           <th>Kime</th>
-          <th>Açıklama</th>
-          <th>Tutar</th>
+          <th>HT</th>
+          <th>TVA</th>
+          <th>TTC</th>
           <th>Öncelik</th>
           <th>Durum</th>
           <th></th>
         </tr>
       </thead>
+
       <tbody id="expenseRows"></tbody>
+
     </table>
+
   </div>
 
 </section>
 
+
 <section id="products" class="panel">
 
   <div class="sectionhead">
+
     <div>
       <h2>Ürün Karlılığı</h2>
-      <p>Gerçek maliyet ve marj.</p>
+      <p>Alış, satış, lojistik ve diğer maliyetler sonrası gerçek katkı.</p>
     </div>
 
     <button onclick="productModal()">+ Yeni Ürün</button>
+
   </div>
 
   <div class="tablewrap">
+
     <table>
+
       <thead>
         <tr>
           <th>Model</th>
@@ -491,25 +710,33 @@ input,select{
           <th></th>
         </tr>
       </thead>
+
       <tbody id="productRows"></tbody>
+
     </table>
+
   </div>
 
 </section>
 
+
 <section id="logistics" class="panel">
 
   <div class="sectionhead">
+
     <div>
       <h2>Lojistik</h2>
-      <p>Konteyner ve m³ başına maliyet.</p>
+      <p>Konteyner, nakliye ve m³ başına maliyet.</p>
     </div>
 
     <button onclick="shipmentModal()">+ Yeni Sevkiyat</button>
+
   </div>
 
   <div class="tablewrap">
+
     <table>
+
       <thead>
         <tr>
           <th>Sevkiyat</th>
@@ -521,11 +748,15 @@ input,select{
           <th></th>
         </tr>
       </thead>
+
       <tbody id="shipmentRows"></tbody>
+
     </table>
+
   </div>
 
 </section>
+
 
 <section id="settings" class="panel">
 
@@ -538,10 +769,14 @@ input,select{
       <input id="setReserve" type="number">
     </label>
 
+    <br>
+
     <label>
       Varsayılan TVA (%)
       <input id="setVat" type="number">
     </label>
+
+    <br>
 
     <button onclick="saveSettings()">Kaydet</button>
 
@@ -551,7 +786,9 @@ input,select{
 
 </main>
 
+
 <div id="modal" class="modal hidden">
+
   <div class="modalcard">
 
     <div class="modalhead">
@@ -562,13 +799,16 @@ input,select{
     <div class="modalbody" id="mbody"></div>
 
   </div>
+
 </div>
+
 
 <script>
 
-const KEY='istikbal_finans_v3';
+const KEY='istikbal_finans_v4';
+const OLD_KEY='istikbal_finans_v3';
 
-const D={
+const DEFAULT_DATA={
 
 accounts:[
   {
@@ -594,36 +834,50 @@ accounts:[
   }
 ],
 
+collections:[],
+
 invoices:[],
 
 expenses:[
   {
     id:'rent',
+    invoiceNo:'MF3336-202609-686',
+    invoiceDate:'2026-09-15',
     due:'2026-10-01',
     category:'Kira',
-    supplier:'Bailleur',
-    description:'3 aylık kira',
-    amount:22500,
+    supplier:'Financière Internationale Monceau',
+    description:'Loyer T4 2026 + charges + provision taxe foncière',
+    ht:18753.33,
+    vat:3750.67,
+    ttc:22504,
     priority:'Zorunlu',
     status:'Ödenecek'
   },
   {
     id:'salary',
+    invoiceNo:'',
+    invoiceDate:'2026-09-28',
     due:'2026-10-01',
     category:'Maaş',
     supplier:'Personel',
     description:'Berk + Hülya + Rohan + Yusuf',
-    amount:5600,
+    ht:5600,
+    vat:0,
+    ttc:5600,
     priority:'Zorunlu',
     status:'Ödenecek'
   },
   {
     id:'urssaf',
+    invoiceNo:'',
+    invoiceDate:'2026-09-28',
     due:'2026-10-15',
     category:'URSSAF',
     supplier:'URSSAF',
-    description:'Geçici provizyon - kesin tutar girilecek',
-    amount:2500,
+    description:'Geçici provizyon - kesin rakam geldiğinde düzelt',
+    ht:2500,
+    vat:0,
+    ttc:2500,
     priority:'Zorunlu',
     status:'Ödenecek'
   }
@@ -640,79 +894,201 @@ settings:{
 
 };
 
-let db=(()=>{
-  try{
-    return JSON.parse(localStorage.getItem(KEY)) || structuredClone(D)
-  }catch{
-    return structuredClone(D)
+
+function deepCopy(x){
+  return JSON.parse(JSON.stringify(x))
+}
+
+
+function migrateOld(old){
+
+  let d=deepCopy(DEFAULT_DATA);
+
+  if(old.accounts){
+    d.accounts=old.accounts;
   }
-})();
+
+  if(old.invoices){
+    d.invoices=old.invoices;
+  }
+
+  if(old.products){
+    d.products=old.products;
+  }
+
+  if(old.shipments){
+    d.shipments=old.shipments;
+  }
+
+  if(old.settings){
+    d.settings={
+      reserve:Number(old.settings.reserve ?? 10000),
+      vat:Number(old.settings.vat ?? 20)
+    };
+  }
+
+  if(old.expenses){
+
+    d.expenses=old.expenses.map(x=>{
+
+      if(x.id==='rent'){
+
+        return {
+          id:'rent',
+          invoiceNo:'MF3336-202609-686',
+          invoiceDate:'2026-09-15',
+          due:'2026-10-01',
+          category:'Kira',
+          supplier:'Financière Internationale Monceau',
+          description:'Loyer T4 2026 + charges + provision taxe foncière',
+          ht:18753.33,
+          vat:3750.67,
+          ttc:22504,
+          priority:'Zorunlu',
+          status:x.status || 'Ödenecek'
+        };
+
+      }
+
+      return {
+        id:x.id || makeId(),
+        invoiceNo:x.invoiceNo || '',
+        invoiceDate:x.invoiceDate || x.due || today(),
+        due:x.due || today(),
+        category:x.category || 'Diğer',
+        supplier:x.supplier || '',
+        description:x.description || '',
+        ht:Number(x.ht ?? x.amount ?? 0),
+        vat:Number(x.vat ?? 0),
+        ttc:Number(x.ttc ?? x.amount ?? 0),
+        priority:x.priority || 'Normal',
+        status:x.status || 'Ödenecek'
+      };
+
+    });
+
+  }
+
+  return d;
+
+}
+
+
+function loadDatabase(){
+
+  try{
+
+    let current=localStorage.getItem(KEY);
+
+    if(current){
+      return JSON.parse(current);
+    }
+
+    let old=localStorage.getItem(OLD_KEY);
+
+    if(old){
+
+      let migrated=migrateOld(JSON.parse(old));
+
+      localStorage.setItem(KEY,JSON.stringify(migrated));
+
+      return migrated;
+
+    }
+
+    return deepCopy(DEFAULT_DATA);
+
+  }catch(e){
+
+    return deepCopy(DEFAULT_DATA);
+
+  }
+
+}
+
+
+let db=loadDatabase();
+
 
 function save(){
+
   localStorage.setItem(KEY,JSON.stringify(db));
-  render()
+
+  render();
+
 }
+
 
 function n(v){
+
   return Number(
-    String(v??'')
-    .replace(',','.')
-    .replace(/\s/g,'')
-  ) || 0
+    String(v ?? '')
+      .replace(',','.')
+      .replace(/\s/g,'')
+  ) || 0;
+
 }
 
+
 function euro(v){
+
   return new Intl.NumberFormat(
     'fr-FR',
     {
       style:'currency',
       currency:'EUR'
     }
-  ).format(n(v))
+  ).format(n(v));
+
 }
 
-function id(){
-  return Date.now().toString(36)+Math.random().toString(36).slice(2,6)
+
+function makeId(){
+
+  return Date.now().toString(36)
+  +Math.random().toString(36).slice(2,7);
+
 }
+
 
 function today(){
-  return new Date().toISOString().slice(0,10)
+
+  return new Date().toISOString().slice(0,10);
+
 }
 
-function addMonths(s,m){
 
-  let d=new Date(s+'T12:00:00');
-
-  let day=d.getDate();
-
-  d.setMonth(d.getMonth()+m);
-
-  if(d.getDate()<day){
-    d.setDate(0)
-  }
-
-  return d.toISOString().slice(0,10)
-}
-
-function plusDays(k){
+function plusDays(days){
 
   let d=new Date();
 
-  d.setDate(d.getDate()+k);
+  d.setDate(d.getDate()+days);
 
-  return d.toISOString().slice(0,10)
+  return d.toISOString().slice(0,10);
+
+}
+
+
+function addMonths(dateString,months){
+
+  let d=new Date(dateString+'T12:00:00');
+
+  let day=d.getDate();
+
+  d.setMonth(d.getMonth()+months);
+
+  if(d.getDate()<day){
+    d.setDate(0);
+  }
+
+  return d.toISOString().slice(0,10);
 
 }
 
-function available(a){
-
-  return n(a.balance)-n(a.pending)
-
-}
 
 function esc(s){
 
-  return String(s??'').replace(
+  return String(s ?? '').replace(
     /[&<>"']/g,
     m=>({
       '&':'&amp;',
@@ -721,36 +1097,104 @@ function esc(s){
       '"':'&quot;',
       "'":'&#39;'
     }[m])
-  )
+  );
 
 }
 
+
+function accountAvailable(a){
+
+  return n(a.balance)-n(a.pending);
+
+}
+
+
+function collectionRemaining(c){
+
+  return Math.max(
+    0,
+    n(c.expected)-n(c.received)
+  );
+
+}
+
+
+function collectionStatus(c){
+
+  let remaining=collectionRemaining(c);
+
+  if(remaining<=0){
+    return 'Tahsil Edildi';
+  }
+
+  if(c.date<today()){
+    return 'Gecikmiş';
+  }
+
+  return 'Bekleniyor';
+
+}
+
+
+function invoiceRemaining(x){
+
+  return Math.max(
+    0,
+    n(x.amount)-n(x.paid)
+  );
+
+}
+
+
+function invoiceStatus(x){
+
+  let remaining=invoiceRemaining(x);
+
+  if(remaining<=0){
+    return 'Ödendi';
+  }
+
+  if(x.due<today()){
+    return 'Gecikmiş';
+  }
+
+  return 'Açık';
+
+}
+
+
 document.querySelectorAll('nav button').forEach(
-  b=>b.onclick=()=>{
 
-    document.querySelectorAll('nav button')
-    .forEach(x=>x.classList.remove('active'));
-
-    document.querySelectorAll('.panel')
-    .forEach(x=>x.classList.remove('active'));
-
-    b.classList.add('active');
+  btn=>btn.onclick=()=>{
 
     document
-    .getElementById(b.dataset.tab)
-    .classList.add('active');
+      .querySelectorAll('nav button')
+      .forEach(x=>x.classList.remove('active'));
+
+    document
+      .querySelectorAll('.panel')
+      .forEach(x=>x.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    document
+      .getElementById(btn.dataset.tab)
+      .classList.add('active');
 
   }
+
 );
+
 
 function render(){
 
   renderAccounts();
+  renderCollections();
   renderInvoices();
   renderExpenses();
   renderProducts();
   renderShipments();
-  renderDash();
+  renderDashboard();
 
   document.getElementById('setReserve').value=db.settings.reserve;
 
@@ -758,466 +1202,583 @@ function render(){
 
 }
 
+
 function renderAccounts(){
 
-  accountRows.innerHTML=db.accounts.map(
-    a=>`
+  accountRows.innerHTML=
+  db.accounts.map(a=>`
+
+    <tr>
+
+      <td>
+        <b>${esc(a.name)}</b>
+      </td>
+
+      <td>${esc(a.type)}</td>
+
+      <td>${euro(a.balance)}</td>
+
+      <td>${euro(a.pending)}</td>
+
+      <td>
+        <b>${euro(accountAvailable(a))}</b>
+      </td>
+
+      <td>
+        <button
+          class="small"
+          onclick="accountModal('${a.id}')"
+        >
+          Düzelt
+        </button>
+      </td>
+
+    </tr>
+
+  `).join('');
+
+
+  accountCards.innerHTML=
+  db.accounts.map(a=>`
+
+    <div class="account">
+
+      <h3>${esc(a.name)}</h3>
+
+      <div class="row">
+        <span>Mevcut</span>
+        <b>${euro(a.balance)}</b>
+      </div>
+
+      <div class="row">
+        <span>Bekleyen</span>
+        <b>${euro(a.pending)}</b>
+      </div>
+
+      <div class="row available">
+        <span>Kullanılabilir</span>
+        <b>${euro(accountAvailable(a))}</b>
+      </div>
+
+    </div>
+
+  `).join('');
+
+}
+
+
+function renderCollections(){
+
+  let rows=[...db.collections]
+    .sort((a,b)=>a.date.localeCompare(b.date));
+
+
+  collectionRows.innerHTML=
+  rows.length
+  ?
+  rows.map(c=>{
+
+    let status=collectionStatus(c);
+
+    return `
+
       <tr>
 
+        <td>${c.date}</td>
+
+        <td>${esc(c.customer)}</td>
+
+        <td>${esc(c.method)}</td>
+
+        <td>${euro(c.expected)}</td>
+
+        <td>${euro(c.received)}</td>
+
         <td>
-          <b>${esc(a.name)}</b>
+          <b>${euro(collectionRemaining(c))}</b>
         </td>
 
         <td>
-          ${a.type}
+
+          <span class="tag
+            ${status==='Tahsil Edildi'?'ok':
+            status==='Gecikmiş'?'bad':'warn'}">
+
+            ${status}
+
+          </span>
+
         </td>
 
         <td>
-          ${euro(a.balance)}
-        </td>
 
-        <td>
-          ${euro(a.pending)}
-        </td>
-
-        <td>
-          <b>${euro(available(a))}</b>
-        </td>
-
-        <td>
           <button
             class="small"
-            onclick="accountModal('${a.id}')"
+            onclick="collectionModal('${c.id}')"
           >
             Düzelt
           </button>
+
         </td>
 
       </tr>
-    `
-  ).join('');
 
-  accountCards.innerHTML=db.accounts.map(
-    a=>`
+    `;
 
-      <div class="account">
+  }).join('')
+  :
+  '<tr><td colspan="8" class="empty">Henüz beklenen tahsilat girilmedi.</td></tr>';
 
-        <h3>${esc(a.name)}</h3>
 
-        <div class="row">
-          <span>Mevcut</span>
-          <b>${euro(a.balance)}</b>
-        </div>
+  let open=rows.filter(
+    c=>collectionRemaining(c)>0
+  );
 
-        <div class="row">
-          <span>Bekleyen</span>
-          <b>${euro(a.pending)}</b>
-        </div>
+  let now=today();
+  let d7=plusDays(7);
+  let d30=plusDays(30);
+  let d60=plusDays(60);
 
-        <div class="row available">
-          <span>Kullanılabilir</span>
-          <b>${euro(available(a))}</b>
-        </div>
 
-      </div>
-    `
-  ).join('');
+  cTotal.textContent=euro(
+    open.reduce(
+      (sum,c)=>sum+collectionRemaining(c),
+      0
+    )
+  );
+
+
+  c7.textContent=euro(
+    open
+      .filter(c=>c.date>=now && c.date<=d7)
+      .reduce(
+        (sum,c)=>sum+collectionRemaining(c),
+        0
+      )
+  );
+
+
+  c30.textContent=euro(
+    open
+      .filter(c=>c.date>=now && c.date<=d30)
+      .reduce(
+        (sum,c)=>sum+collectionRemaining(c),
+        0
+      )
+  );
+
+
+  c60.textContent=euro(
+    open
+      .filter(c=>c.date>=now && c.date<=d60)
+      .reduce(
+        (sum,c)=>sum+collectionRemaining(c),
+        0
+      )
+  );
 
 }
 
-function invoiceRemaining(x){
-
-  return Math.max(
-    0,
-    n(x.amount)-n(x.paid)
-  )
-
-}
-
-function invoiceStatus(x){
-
-  let rem=invoiceRemaining(x);
-
-  if(rem<=0){
-    return 'Ödendi'
-  }
-
-  if(x.due<today()){
-    return 'Gecikmiş'
-  }
-
-  return 'Açık'
-
-}
 
 function renderInvoices(){
 
   let rows=[...db.invoices]
-  .sort(
-    (a,b)=>a.due.localeCompare(b.due)
-  );
+    .sort((a,b)=>a.due.localeCompare(b.due));
+
 
   invoiceRows.innerHTML=
   rows.length
   ?
-  rows.map(
-    x=>{
+  rows.map(x=>{
 
-      let st=invoiceStatus(x);
+    let status=invoiceStatus(x);
 
-      return `
-        <tr>
+    return `
 
-          <td>${esc(x.supplier)}</td>
+      <tr>
 
-          <td>${esc(x.number)}</td>
+        <td>${esc(x.supplier)}</td>
 
-          <td>${x.date}</td>
+        <td>${esc(x.number)}</td>
 
-          <td>${x.due}</td>
+        <td>${x.date}</td>
 
-          <td>${euro(x.amount)}</td>
+        <td>${x.due}</td>
 
-          <td>${euro(x.paid)}</td>
+        <td>${euro(x.amount)}</td>
 
-          <td>
-            <b>
-              ${euro(invoiceRemaining(x))}
-            </b>
-          </td>
+        <td>${euro(x.paid)}</td>
 
-          <td>
-            <span
-              class="tag
-              ${st==='Gecikmiş'?'bad':
-              st==='Ödendi'?'ok':''}"
-            >
-              ${st}
-            </span>
-          </td>
+        <td>
+          <b>${euro(invoiceRemaining(x))}</b>
+        </td>
 
-          <td>
-            <button
-              class="small"
-              onclick="invoiceModal('${x.id}')"
-            >
-              Düzelt
-            </button>
-          </td>
+        <td>
 
-        </tr>
-      `
-    }
-  ).join('')
+          <span class="tag
+            ${status==='Ödendi'?'ok':
+            status==='Gecikmiş'?'bad':'warn'}">
+
+            ${status}
+
+          </span>
+
+        </td>
+
+        <td>
+
+          <button
+            class="small"
+            onclick="invoiceModal('${x.id}')"
+          >
+            Düzelt
+          </button>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  }).join('')
   :
-  '<tr><td colspan="9" class="empty">Henüz fatura girilmedi.</td></tr>';
+  '<tr><td colspan="9" class="empty">Henüz tedarikçi faturası girilmedi.</td></tr>';
+
 
   let open=rows.filter(
     x=>invoiceRemaining(x)>0
   );
 
   let now=today();
-
   let d30=plusDays(30);
-
   let d60=plusDays(60);
+
 
   sTotal.textContent=euro(
     open.reduce(
-      (s,x)=>s+invoiceRemaining(x),
+      (sum,x)=>sum+invoiceRemaining(x),
       0
     )
   );
+
 
   sOverdue.textContent=euro(
     open
-    .filter(x=>x.due<now)
-    .reduce(
-      (s,x)=>s+invoiceRemaining(x),
-      0
-    )
+      .filter(x=>x.due<now)
+      .reduce(
+        (sum,x)=>sum+invoiceRemaining(x),
+        0
+      )
   );
+
 
   s30.textContent=euro(
     open
-    .filter(
-      x=>x.due>=now && x.due<=d30
-    )
-    .reduce(
-      (s,x)=>s+invoiceRemaining(x),
-      0
-    )
+      .filter(x=>x.due>=now && x.due<=d30)
+      .reduce(
+        (sum,x)=>sum+invoiceRemaining(x),
+        0
+      )
   );
+
 
   s60.textContent=euro(
     open
-    .filter(
-      x=>x.due>=now && x.due<=d60
-    )
-    .reduce(
-      (s,x)=>s+invoiceRemaining(x),
-      0
-    )
+      .filter(x=>x.due>=now && x.due<=d60)
+      .reduce(
+        (sum,x)=>sum+invoiceRemaining(x),
+        0
+      )
   );
 
 }
+
 
 function renderExpenses(){
 
   let rows=[...db.expenses]
-  .sort(
-    (a,b)=>a.due.localeCompare(b.due)
-  );
+    .sort((a,b)=>a.due.localeCompare(b.due));
 
-  expenseRows.innerHTML=rows.map(
-    x=>`
 
-      <tr>
+  expenseRows.innerHTML=
+  rows.map(x=>`
 
-        <td>${x.due}</td>
+    <tr>
 
-        <td>${x.category}</td>
+      <td>${esc(x.invoiceNo || '')}</td>
 
-        <td>${esc(x.supplier)}</td>
+      <td>${x.invoiceDate || ''}</td>
 
-        <td>${esc(x.description)}</td>
+      <td>${x.due}</td>
 
-        <td>${euro(x.amount)}</td>
+      <td>${esc(x.category)}</td>
 
-        <td>${x.priority}</td>
+      <td>${esc(x.supplier)}</td>
 
-        <td>${x.status}</td>
+      <td>${euro(x.ht)}</td>
 
-        <td>
+      <td>${euro(x.vat)}</td>
 
-          ${
-            x.status!=='Ödendi'
-            ?
-            `
-              <button
-                class="small"
-                onclick="markExpense('${x.id}')"
-              >
-                Ödendi
-              </button>
-            `
-            :
-            ''
-          }
+      <td>
+        <b>${euro(x.ttc)}</b>
+      </td>
 
-        </td>
+      <td>${esc(x.priority)}</td>
 
-      </tr>
+      <td>
 
-    `
-  ).join('');
+        <span class="tag ${x.status==='Ödendi'?'ok':'warn'}">
+
+          ${esc(x.status)}
+
+        </span>
+
+      </td>
+
+      <td>
+
+        <button
+          class="small"
+          onclick="expenseModal('${x.id}')"
+        >
+          Düzelt
+        </button>
+
+      </td>
+
+    </tr>
+
+  `).join('');
 
 }
+
 
 function renderProducts(){
 
   productRows.innerHTML=
   db.products.length
   ?
-  db.products.map(
-    p=>{
+  db.products.map(p=>{
 
-      let ht=n(p.sale)/(1+n(p.vat)/100);
+    let saleHT=
+    n(p.sale)/(1+n(p.vat)/100);
 
-      let extra=
-      n(p.log)+
-      n(p.delivery)+
-      n(p.assembly)+
-      n(p.fee)+
-      n(p.other);
+    let extra=
+    n(p.log)
+    +n(p.delivery)
+    +n(p.assembly)
+    +n(p.fee)
+    +n(p.other);
 
-      let profit=
-      ht-
-      n(p.purchase)-
-      extra;
+    let profit=
+    saleHT
+    -n(p.purchase)
+    -extra;
 
-      let margin=
-      ht
-      ?
-      profit/ht*100
-      :
-      0;
+    let margin=
+    saleHT
+    ?
+    profit/saleHT*100
+    :
+    0;
 
-      return `
+    return `
 
-        <tr>
+      <tr>
 
-          <td>${esc(p.name)}</td>
+        <td>${esc(p.name)}</td>
 
-          <td>${euro(p.purchase)}</td>
+        <td>${euro(p.purchase)}</td>
 
-          <td>${euro(p.sale)}</td>
+        <td>${euro(p.sale)}</td>
 
-          <td>${euro(extra)}</td>
+        <td>${euro(extra)}</td>
 
-          <td>${euro(profit)}</td>
+        <td>${euro(profit)}</td>
 
-          <td>${margin.toFixed(1)}%</td>
+        <td>${margin.toFixed(1)}%</td>
 
-          <td>
+        <td>
 
-            <button
-              class="small"
-              onclick="productModal('${p.id}')"
-            >
-              Düzelt
-            </button>
+          <button
+            class="small"
+            onclick="productModal('${p.id}')"
+          >
+            Düzelt
+          </button>
 
-          </td>
+        </td>
 
-        </tr>
+      </tr>
 
-      `
+    `;
 
-    }
-  ).join('')
+  }).join('')
   :
-  '<tr><td colspan="7" class="empty">Henüz ürün yok.</td></tr>';
+  '<tr><td colspan="7" class="empty">Henüz ürün girilmedi.</td></tr>';
 
 }
+
 
 function renderShipments(){
 
   shipmentRows.innerHTML=
   db.shipments.length
   ?
-  db.shipments.map(
-    s=>{
+  db.shipments.map(s=>{
 
-      let log=
-      n(s.transport)+
-      n(s.customs)+
-      n(s.local)+
-      n(s.unload)+
-      n(s.other);
+    let logistics=
+    n(s.transport)
+    +n(s.customs)
+    +n(s.local)
+    +n(s.unload)
+    +n(s.other);
 
-      return `
+    return `
 
-        <tr>
+      <tr>
 
-          <td>${esc(s.name)}</td>
+        <td>${esc(s.name)}</td>
 
-          <td>${euro(s.goods)}</td>
+        <td>${euro(s.goods)}</td>
 
-          <td>${euro(log)}</td>
+        <td>${euro(logistics)}</td>
 
-          <td>${n(s.volume).toFixed(1)} m³</td>
+        <td>${n(s.volume).toFixed(1)} m³</td>
 
-          <td>
-            ${euro(
-              n(s.volume)
-              ?
-              log/n(s.volume)
-              :
-              0
-            )}
-          </td>
+        <td>
+          ${euro(
+            n(s.volume)
+            ?
+            logistics/n(s.volume)
+            :
+            0
+          )}
+        </td>
 
-          <td>
-            ${euro(n(s.goods)+log)}
-          </td>
+        <td>
+          ${euro(
+            n(s.goods)+logistics
+          )}
+        </td>
 
-          <td>
+        <td>
 
-            <button
-              class="small"
-              onclick="shipmentModal('${s.id}')"
-            >
-              Düzelt
-            </button>
+          <button
+            class="small"
+            onclick="shipmentModal('${s.id}')"
+          >
+            Düzelt
+          </button>
 
-          </td>
+        </td>
 
-        </tr>
+      </tr>
 
-      `
+    `;
 
-    }
-  ).join('')
+  }).join('')
   :
-  '<tr><td colspan="7" class="empty">Henüz sevkiyat yok.</td></tr>';
+  '<tr><td colspan="7" class="empty">Henüz lojistik kaydı yok.</td></tr>';
 
 }
 
-function renderDash(){
 
-  let current=
-  db.accounts.reduce(
-    (s,a)=>s+n(a.balance),
-    0
-  );
-
-  let avail=
-  db.accounts.reduce(
-    (s,a)=>s+available(a),
-    0
-  );
+function renderDashboard(){
 
   let now=today();
-
   let d30=plusDays(30);
 
-  let exp30=
-  db.expenses
-  .filter(
-    x=>
-    x.status!=='Ödendi' &&
-    x.due>=now &&
-    x.due<=d30
-  )
-  .reduce(
-    (s,x)=>s+n(x.amount),
+
+  let availableCash=
+  db.accounts.reduce(
+    (sum,a)=>sum+accountAvailable(a),
     0
   );
 
-  let invOpen=
-  db.invoices
-  .filter(
+
+  let collection30=
+  db.collections
+    .filter(
+      c=>
+      collectionRemaining(c)>0
+      &&
+      c.date>=now
+      &&
+      c.date<=d30
+    )
+    .reduce(
+      (sum,c)=>sum+collectionRemaining(c),
+      0
+    );
+
+
+  let expense30=
+  db.expenses
+    .filter(
+      x=>
+      x.status!=='Ödendi'
+      &&
+      x.due>=now
+      &&
+      x.due<=d30
+    )
+    .reduce(
+      (sum,x)=>sum+n(x.ttc),
+      0
+    );
+
+
+  let openInvoices=
+  db.invoices.filter(
     x=>invoiceRemaining(x)>0
   );
 
-  let inv30=
-  invOpen
-  .filter(
-    x=>
-    x.due>=now &&
-    x.due<=d30
-  )
-  .reduce(
-    (s,x)=>s+invoiceRemaining(x),
-    0
-  );
+
+  let supplier30=
+  openInvoices
+    .filter(
+      x=>
+      x.due>=now
+      &&
+      x.due<=d30
+    )
+    .reduce(
+      (sum,x)=>sum+invoiceRemaining(x),
+      0
+    );
+
 
   let overdue=
-  invOpen
-  .filter(
-    x=>x.due<now
-  )
-  .reduce(
-    (s,x)=>s+invoiceRemaining(x),
-    0
-  );
+  openInvoices
+    .filter(
+      x=>x.due<now
+    )
+    .reduce(
+      (sum,x)=>sum+invoiceRemaining(x),
+      0
+    );
+
 
   let due30=
-  exp30+inv30;
+  expense30+supplier30;
+
 
   let reserve=
   n(db.settings.reserve);
 
-  let free=
-  avail-
-  due30-
-  overdue-
-  reserve;
 
-  dCurrent.textContent=euro(current);
+  let projected=
+  availableCash
+  +collection30
+  -due30
+  -overdue
+  -reserve;
 
-  dAvail.textContent=euro(avail);
+
+  dAvail.textContent=euro(availableCash);
+
+  dCollect30.textContent=euro(collection30);
 
   dDue30.textContent=euro(due30);
 
@@ -1225,121 +1786,199 @@ function renderDash(){
 
   dReserve.textContent=euro(reserve);
 
-  dFree.textContent=euro(free);
+  dFree.textContent=euro(projected);
 
-  let a=[];
 
-  a.push(`
+  let messages=[];
+
+
+  messages.push(`
+
     <p>
-      Bekleyen banka işlemleri sonrası kullanılabilir toplam
-      <b>${euro(avail)}</b>.
+
+      Banka ve kasa hesaplarında bekleyen işlemler sonrası
+
+      <b>${euro(availableCash)}</b>
+
+      kullanılabilir para var.
+
     </p>
+
   `);
+
+
+  messages.push(`
+
+    <p class="ok">
+
+      Önümüzdeki 30 gün için kayıtlı beklenen tahsilat
+
+      <b>${euro(collection30)}</b>.
+
+    </p>
+
+  `);
+
+
+  messages.push(`
+
+    <p>
+
+      Önümüzdeki 30 gün kayıtlı ödeme yükü
+
+      <b>${euro(due30)}</b>.
+
+    </p>
+
+  `);
+
 
   if(overdue>0){
 
-    a.push(`
+    messages.push(`
+
       <p class="bad">
-        Gecikmiş tedarikçi faturası toplamı
+
+        Gecikmiş tedarikçi borcu
+
         <b>${euro(overdue)}</b>.
-        Öncelikli ele alınmalı.
+
       </p>
+
     `);
 
   }
 
-  a.push(`
-    <p>
-      Önümüzdeki 30 gün kayıtlı ödeme yükü
-      <b>${euro(due30)}</b>.
-    </p>
-  `);
 
-  if(free<0){
+  if(projected<0){
 
-    a.push(`
+    messages.push(`
+
       <p class="bad">
-        Güvenlik rezervi dahil nakit açığı yaklaşık
-        <b>${euro(-free)}</b>.
-        Tahsilat/ödeme planı gerekiyor.
+
+        Tahsilatlar hesaba katıldıktan sonra bile,
+
+        güvenlik rezervi dahil yaklaşık
+
+        <b>${euro(-projected)}</b>
+
+        nakit açığı görünüyor.
+
       </p>
+
     `);
 
   }else{
 
-    a.push(`
+    messages.push(`
+
       <p class="ok">
-        Planlanan ödemeler ve rezerv sonrası yaklaşık
-        <b>${euro(free)}</b>
-        serbest nakit kalıyor.
+
+        Planlanan tahsilat ve ödemeler sonrası yaklaşık
+
+        <b>${euro(projected)}</b>
+
+        güvenli serbest nakit kalıyor.
+
       </p>
+
     `);
 
   }
 
-  advice.innerHTML=a.join('');
 
-  let items=[];
+  advice.innerHTML=messages.join('');
+
+
+  let movements=[];
+
+
+  db.collections
+    .filter(c=>collectionRemaining(c)>0)
+    .forEach(c=>{
+
+      movements.push({
+        date:c.date,
+        name:'TAHSİLAT · '+c.customer+' · '+c.method,
+        amount:collectionRemaining(c),
+        type:'in'
+      });
+
+    });
+
 
   db.expenses
-  .filter(
-    x=>x.status!=='Ödendi'
-  )
-  .forEach(
-    x=>items.push({
-      due:x.due,
-      name:x.supplier+' - '+x.description,
-      amount:n(x.amount)
-    })
+    .filter(x=>x.status!=='Ödendi')
+    .forEach(x=>{
+
+      movements.push({
+        date:x.due,
+        name:'ÖDEME · '+x.supplier+' · '+x.category,
+        amount:n(x.ttc),
+        type:'out'
+      });
+
+    });
+
+
+  openInvoices.forEach(x=>{
+
+    movements.push({
+      date:x.due,
+      name:'TEDARİKÇİ · '+x.supplier+' · '+x.number,
+      amount:invoiceRemaining(x),
+      type:'out'
+    });
+
+  });
+
+
+  movements.sort(
+    (a,b)=>a.date.localeCompare(b.date)
   );
 
-  invOpen.forEach(
-    x=>items.push({
-      due:x.due,
-      name:x.supplier+' - Fatura '+x.number,
-      amount:invoiceRemaining(x)
-    })
-  );
-
-  items.sort(
-    (a,b)=>a.due.localeCompare(b.due)
-  );
 
   upcoming.innerHTML=
-  items.length
+  movements.length
   ?
-  items
-  .slice(0,10)
-  .map(
-    x=>`
+  movements
+    .slice(0,12)
+    .map(x=>`
 
       <div class="uprow">
 
-        <span>${x.due}</span>
+        <span>${x.date}</span>
 
         <span>${esc(x.name)}</span>
 
-        <strong>${euro(x.amount)}</strong>
+        <strong style="color:${x.type==='in'?'#16794b':'#b42318'}">
+
+          ${x.type==='in'?'+':'-'}
+
+          ${euro(x.amount)}
+
+        </strong>
 
       </div>
 
-    `
-  )
-  .join('')
+    `)
+    .join('')
   :
-  '<div class="empty">Yaklaşan ödeme yok.</div>';
+  '<div class="empty">Kayıtlı para hareketi yok.</div>';
 
 }
 
-function openModal(t,h){
 
-  mtitle.textContent=t;
+function openModal(title,html){
 
-  mbody.innerHTML=h;
+  mtitle.textContent=title;
+
+  mbody.innerHTML=html;
 
   modal.classList.remove('hidden');
 
 }
+
 
 function closeModal(){
 
@@ -1347,18 +1986,18 @@ function closeModal(){
 
 }
 
-function v(i){
 
-  return document.getElementById(i).value
+function value(id){
+
+  return document.getElementById(id).value;
 
 }
 
-function accountModal(i=''){
+
+function accountModal(editId=''){
 
   let a=
-  db.accounts.find(
-    x=>x.id===i
-  )
+  db.accounts.find(x=>x.id===editId)
   ||
   {
     id:'',
@@ -1368,73 +2007,45 @@ function accountModal(i=''){
     pending:0
   };
 
+
   openModal(
-    'Hesap',
+    'Banka / Kasa Hesabı',
     `
 
       <div class="form">
 
         <label>
           Hesap adı
-          <input
-            id="an"
-            value="${esc(a.name)}"
-          >
+          <input id="an" value="${esc(a.name)}">
         </label>
 
         <label>
           Tür
           <select id="at">
-
-            <option
-              ${a.type==='Banka'?'selected':''}
-            >
-              Banka
-            </option>
-
-            <option
-              ${a.type==='Kasa'?'selected':''}
-            >
-              Kasa
-            </option>
-
+            <option ${a.type==='Banka'?'selected':''}>Banka</option>
+            <option ${a.type==='Kasa'?'selected':''}>Kasa</option>
           </select>
         </label>
 
         <label>
           Mevcut bakiye
-          <input
-            id="ab"
-            type="number"
-            step=".01"
-            value="${a.balance}"
-          >
+          <input id="ab" type="number" step=".01" value="${a.balance}">
         </label>
 
         <label>
           Bekleyen işlemler
-          <input
-            id="ap"
-            type="number"
-            step=".01"
-            value="${a.pending}"
-          >
+          <input id="ap" type="number" step=".01" value="${a.pending}">
         </label>
 
       </div>
 
       <div class="actions">
 
-        <button
-          class="secondary"
-          onclick="closeModal()"
-        >
+        <button class="secondary" onclick="closeModal()">
           Vazgeç
         </button>
 
-        <button
-          onclick="saveAccount('${a.id}')"
-        >
+        <button onclick="saveAccount('${a.id}')">
           Kaydet
         </button>
 
@@ -1445,36 +2056,30 @@ function accountModal(i=''){
 
 }
 
-function saveAccount(i){
 
-  let o={
+function saveAccount(editId){
 
-    id:i||id(),
-
-    name:v('an'),
-
-    type:v('at'),
-
-    balance:n(v('ab')),
-
-    pending:n(v('ap'))
-
+  let obj={
+    id:editId || makeId(),
+    name:value('an'),
+    type:value('at'),
+    balance:n(value('ab')),
+    pending:n(value('ap'))
   };
 
-  let k=
+
+  let index=
   db.accounts.findIndex(
-    x=>x.id===i
+    x=>x.id===editId
   );
 
-  if(k>=0){
 
-    db.accounts[k]=o;
-
+  if(index>=0){
+    db.accounts[index]=obj;
   }else{
-
-    db.accounts.push(o);
-
+    db.accounts.push(obj);
   }
+
 
   closeModal();
 
@@ -1482,12 +2087,126 @@ function saveAccount(i){
 
 }
 
-function invoiceModal(i=''){
+
+function collectionModal(editId=''){
+
+  let c=
+  db.collections.find(x=>x.id===editId)
+  ||
+  {
+    id:'',
+    date:today(),
+    customer:'',
+    method:'Virman',
+    expected:0,
+    received:0,
+    note:''
+  };
+
+
+  openModal(
+    'Beklenen Tahsilat',
+    `
+
+      <div class="form">
+
+        <label>
+          Beklenen tarih
+          <input id="cd" type="date" value="${c.date}">
+        </label>
+
+        <label>
+          Müşteri / Kaynak
+          <input id="cc" value="${esc(c.customer)}">
+        </label>
+
+        <label>
+          Ödeme türü
+          <select id="cm">
+
+            <option ${c.method==='Alma'?'selected':''}>Alma</option>
+            <option ${c.method==='Oney'?'selected':''}>Oney</option>
+            <option ${c.method==='Kart'?'selected':''}>Kart</option>
+            <option ${c.method==='Virman'?'selected':''}>Virman</option>
+            <option ${c.method==='Nakit'?'selected':''}>Nakit</option>
+            <option ${c.method==='Çek'?'selected':''}>Çek</option>
+            <option ${c.method==='Diğer'?'selected':''}>Diğer</option>
+
+          </select>
+        </label>
+
+        <label>
+          Beklenen tutar
+          <input id="ce" type="number" step=".01" value="${c.expected}">
+        </label>
+
+        <label>
+          Tahsil edilen
+          <input id="cr" type="number" step=".01" value="${c.received}">
+        </label>
+
+        <label class="full">
+          Not
+          <textarea id="cn">${esc(c.note)}</textarea>
+        </label>
+
+      </div>
+
+      <div class="actions">
+
+        <button class="secondary" onclick="closeModal()">
+          Vazgeç
+        </button>
+
+        <button onclick="saveCollection('${c.id}')">
+          Kaydet
+        </button>
+
+      </div>
+
+    `
+  );
+
+}
+
+
+function saveCollection(editId){
+
+  let obj={
+    id:editId || makeId(),
+    date:value('cd'),
+    customer:value('cc'),
+    method:value('cm'),
+    expected:n(value('ce')),
+    received:n(value('cr')),
+    note:value('cn')
+  };
+
+
+  let index=
+  db.collections.findIndex(
+    x=>x.id===editId
+  );
+
+
+  if(index>=0){
+    db.collections[index]=obj;
+  }else{
+    db.collections.push(obj);
+  }
+
+
+  closeModal();
+
+  save();
+
+}
+
+
+function invoiceModal(editId=''){
 
   let x=
-  db.invoices.find(
-    z=>z.id===i
-  )
+  db.invoices.find(z=>z.id===editId)
   ||
   {
     id:'',
@@ -1499,6 +2218,7 @@ function invoiceModal(i=''){
     paid:0
   };
 
+
   openModal(
     'Tedarikçi Faturası',
     `
@@ -1507,18 +2227,12 @@ function invoiceModal(i=''){
 
         <label>
           Tedarikçi
-          <input
-            id="is"
-            value="${esc(x.supplier)}"
-          >
+          <input id="is" value="${esc(x.supplier)}">
         </label>
 
         <label>
           Fatura no
-          <input
-            id="in"
-            value="${esc(x.number)}"
-          >
+          <input id="in" value="${esc(x.number)}">
         </label>
 
         <label>
@@ -1535,48 +2249,29 @@ function invoiceModal(i=''){
         </label>
 
         <label>
-          Vade tarihi (+2 ay)
-          <input
-            id="idue"
-            type="date"
-            value="${x.due}"
-          >
+          Vade tarihi
+          <input id="idue" type="date" value="${x.due}">
         </label>
 
         <label>
           Fatura tutarı
-          <input
-            id="ia"
-            type="number"
-            step=".01"
-            value="${x.amount}"
-          >
+          <input id="ia" type="number" step=".01" value="${x.amount}">
         </label>
 
         <label>
           Ödenen
-          <input
-            id="ip"
-            type="number"
-            step=".01"
-            value="${x.paid}"
-          >
+          <input id="ip" type="number" step=".01" value="${x.paid}">
         </label>
 
       </div>
 
       <div class="actions">
 
-        <button
-          class="secondary"
-          onclick="closeModal()"
-        >
+        <button class="secondary" onclick="closeModal()">
           Vazgeç
         </button>
 
-        <button
-          onclick="saveInvoice('${x.id}')"
-        >
+        <button onclick="saveInvoice('${x.id}')">
           Kaydet
         </button>
 
@@ -1587,40 +2282,32 @@ function invoiceModal(i=''){
 
 }
 
-function saveInvoice(i){
 
-  let o={
+function saveInvoice(editId){
 
-    id:i||id(),
-
-    supplier:v('is'),
-
-    number:v('in'),
-
-    date:v('idate'),
-
-    due:v('idue'),
-
-    amount:n(v('ia')),
-
-    paid:n(v('ip'))
-
+  let obj={
+    id:editId || makeId(),
+    supplier:value('is'),
+    number:value('in'),
+    date:value('idate'),
+    due:value('idue'),
+    amount:n(value('ia')),
+    paid:n(value('ip'))
   };
 
-  let k=
+
+  let index=
   db.invoices.findIndex(
-    x=>x.id===i
+    x=>x.id===editId
   );
 
-  if(k>=0){
 
-    db.invoices[k]=o;
-
+  if(index>=0){
+    db.invoices[index]=obj;
   }else{
-
-    db.invoices.push(o);
-
+    db.invoices.push(obj);
   }
+
 
   closeModal();
 
@@ -1628,85 +2315,140 @@ function saveInvoice(i){
 
 }
 
-function expenseModal(){
+
+function expenseModal(editId=''){
+
+  let x=
+  db.expenses.find(z=>z.id===editId)
+  ||
+  {
+    id:'',
+    invoiceNo:'',
+    invoiceDate:today(),
+    due:today(),
+    category:'Diğer',
+    supplier:'',
+    description:'',
+    ht:0,
+    vat:0,
+    ttc:0,
+    priority:'Normal',
+    status:'Ödenecek'
+  };
+
 
   openModal(
-    'Yeni Ödeme',
+    'Gider / Fatura',
     `
 
       <div class="form">
 
         <label>
-          Vade
-          <input
-            id="ed"
-            type="date"
-            value="${today()}"
-          >
+          Fatura no
+          <input id="einvoice" value="${esc(x.invoiceNo)}">
+        </label>
+
+        <label>
+          Fatura tarihi
+          <input id="einvdate" type="date" value="${x.invoiceDate}">
+        </label>
+
+        <label>
+          Vade tarihi
+          <input id="edue" type="date" value="${x.due}">
         </label>
 
         <label>
           Kategori
-          <select id="ec">
+          <select id="ecat">
 
-            <option>Kira</option>
-            <option>Maaş</option>
-            <option>URSSAF</option>
-            <option>Kredi</option>
-            <option>Sigorta</option>
-            <option>Enerji</option>
-            <option>Nakliyeci</option>
-            <option>Reklam</option>
-            <option>Diğer</option>
+            <option ${x.category==='Kira'?'selected':''}>Kira</option>
+            <option ${x.category==='Maaş'?'selected':''}>Maaş</option>
+            <option ${x.category==='URSSAF'?'selected':''}>URSSAF</option>
+            <option ${x.category==='Kredi'?'selected':''}>Kredi</option>
+            <option ${x.category==='Sigorta'?'selected':''}>Sigorta</option>
+            <option ${x.category==='Enerji'?'selected':''}>Enerji</option>
+            <option ${x.category==='Nakliyeci'?'selected':''}>Nakliyeci</option>
+            <option ${x.category==='Depo'?'selected':''}>Depo</option>
+            <option ${x.category==='Reklam'?'selected':''}>Reklam</option>
+            <option ${x.category==='Diğer'?'selected':''}>Diğer</option>
 
           </select>
         </label>
 
         <label>
-          Kime
-          <input id="es">
+          Kime / Firma
+          <input id="esupplier" value="${esc(x.supplier)}">
         </label>
 
         <label>
-          Tutar
+          HT
           <input
-            id="ea"
+            id="eht"
             type="number"
             step=".01"
+            value="${x.ht}"
+            oninput="recalcExpense()"
           >
         </label>
 
-        <label class="full">
-          Açıklama
-          <input id="ex">
+        <label>
+          TVA tutarı
+          <input
+            id="evat"
+            type="number"
+            step=".01"
+            value="${x.vat}"
+            oninput="recalcExpense()"
+          >
+        </label>
+
+        <label>
+          TTC
+          <input
+            id="ettc"
+            type="number"
+            step=".01"
+            value="${x.ttc}"
+          >
         </label>
 
         <label>
           Öncelik
-          <select id="ep">
+          <select id="epriority">
 
-            <option>Zorunlu</option>
-            <option>Yüksek</option>
-            <option>Normal</option>
-            <option>Ertelenebilir</option>
+            <option ${x.priority==='Zorunlu'?'selected':''}>Zorunlu</option>
+            <option ${x.priority==='Yüksek'?'selected':''}>Yüksek</option>
+            <option ${x.priority==='Normal'?'selected':''}>Normal</option>
+            <option ${x.priority==='Ertelenebilir'?'selected':''}>Ertelenebilir</option>
 
           </select>
+        </label>
+
+        <label>
+          Durum
+          <select id="estatus">
+
+            <option ${x.status==='Ödenecek'?'selected':''}>Ödenecek</option>
+            <option ${x.status==='Ödendi'?'selected':''}>Ödendi</option>
+
+          </select>
+        </label>
+
+        <label class="full">
+          Açıklama
+          <textarea id="edesc">${esc(x.description)}</textarea>
         </label>
 
       </div>
 
       <div class="actions">
 
-        <button
-          class="secondary"
-          onclick="closeModal()"
-        >
+        <button class="secondary" onclick="closeModal()">
           Vazgeç
         </button>
 
-        <button
-          onclick="saveExpense()"
-        >
+        <button onclick="saveExpense('${x.id}')">
           Kaydet
         </button>
 
@@ -1717,27 +2459,53 @@ function expenseModal(){
 
 }
 
-function saveExpense(){
 
-  db.expenses.push({
+function recalcExpense(){
 
-    id:id(),
+  let ht=n(
+    document.getElementById('eht').value
+  );
 
-    due:v('ed'),
+  let vat=n(
+    document.getElementById('evat').value
+  );
 
-    category:v('ec'),
+  document.getElementById('ettc').value=
+  (ht+vat).toFixed(2);
 
-    supplier:v('es'),
+}
 
-    description:v('ex'),
 
-    amount:n(v('ea')),
+function saveExpense(editId){
 
-    priority:v('ep'),
+  let obj={
+    id:editId || makeId(),
+    invoiceNo:value('einvoice'),
+    invoiceDate:value('einvdate'),
+    due:value('edue'),
+    category:value('ecat'),
+    supplier:value('esupplier'),
+    description:value('edesc'),
+    ht:n(value('eht')),
+    vat:n(value('evat')),
+    ttc:n(value('ettc')),
+    priority:value('epriority'),
+    status:value('estatus')
+  };
 
-    status:'Ödenecek'
 
-  });
+  let index=
+  db.expenses.findIndex(
+    x=>x.id===editId
+  );
+
+
+  if(index>=0){
+    db.expenses[index]=obj;
+  }else{
+    db.expenses.push(obj);
+  }
+
 
   closeModal();
 
@@ -1745,29 +2513,11 @@ function saveExpense(){
 
 }
 
-function markExpense(i){
 
-  let x=
-  db.expenses.find(
-    x=>x.id===i
-  );
-
-  if(x){
-
-    x.status='Ödendi';
-
-    save();
-
-  }
-
-}
-
-function productModal(i=''){
+function productModal(editId=''){
 
   let p=
-  db.products.find(
-    x=>x.id===i
-  )
+  db.products.find(x=>x.id===editId)
   ||
   {
     id:'',
@@ -1782,113 +2532,67 @@ function productModal(i=''){
     other:0
   };
 
+
   openModal(
-    'Ürün',
+    'Ürün Karlılığı',
     `
 
       <div class="form">
 
         <label>
           Model
-          <input
-            id="pn"
-            value="${esc(p.name)}"
-          >
+          <input id="pn" value="${esc(p.name)}">
         </label>
 
         <label>
           Alış HT
-          <input
-            id="pp"
-            type="number"
-            step=".01"
-            value="${p.purchase}"
-          >
+          <input id="pp" type="number" step=".01" value="${p.purchase}">
         </label>
 
         <label>
           Satış TTC
-          <input
-            id="ps"
-            type="number"
-            step=".01"
-            value="${p.sale}"
-          >
+          <input id="ps" type="number" step=".01" value="${p.sale}">
         </label>
 
         <label>
           TVA %
-          <input
-            id="pv"
-            type="number"
-            value="${p.vat}"
-          >
+          <input id="pv" type="number" value="${p.vat}">
         </label>
 
         <label>
           Lojistik payı
-          <input
-            id="pl"
-            type="number"
-            step=".01"
-            value="${p.log}"
-          >
+          <input id="pl" type="number" step=".01" value="${p.log}">
         </label>
 
         <label>
           Teslimat
-          <input
-            id="pd"
-            type="number"
-            step=".01"
-            value="${p.delivery}"
-          >
+          <input id="pd" type="number" step=".01" value="${p.delivery}">
         </label>
 
         <label>
           Montaj
-          <input
-            id="pa"
-            type="number"
-            step=".01"
-            value="${p.assembly}"
-          >
+          <input id="pa" type="number" step=".01" value="${p.assembly}">
         </label>
 
         <label>
-          Komisyon
-          <input
-            id="pf"
-            type="number"
-            step=".01"
-            value="${p.fee}"
-          >
+          Ödeme komisyonu
+          <input id="pf" type="number" step=".01" value="${p.fee}">
         </label>
 
         <label>
-          Diğer
-          <input
-            id="po"
-            type="number"
-            step=".01"
-            value="${p.other}"
-          >
+          Diğer maliyet
+          <input id="po" type="number" step=".01" value="${p.other}">
         </label>
 
       </div>
 
       <div class="actions">
 
-        <button
-          class="secondary"
-          onclick="closeModal()"
-        >
+        <button class="secondary" onclick="closeModal()">
           Vazgeç
         </button>
 
-        <button
-          onclick="saveProduct('${p.id}')"
-        >
+        <button onclick="saveProduct('${p.id}')">
           Kaydet
         </button>
 
@@ -1899,46 +2603,35 @@ function productModal(i=''){
 
 }
 
-function saveProduct(i){
 
-  let o={
+function saveProduct(editId){
 
-    id:i||id(),
-
-    name:v('pn'),
-
-    purchase:n(v('pp')),
-
-    sale:n(v('ps')),
-
-    vat:n(v('pv')),
-
-    log:n(v('pl')),
-
-    delivery:n(v('pd')),
-
-    assembly:n(v('pa')),
-
-    fee:n(v('pf')),
-
-    other:n(v('po'))
-
+  let obj={
+    id:editId || makeId(),
+    name:value('pn'),
+    purchase:n(value('pp')),
+    sale:n(value('ps')),
+    vat:n(value('pv')),
+    log:n(value('pl')),
+    delivery:n(value('pd')),
+    assembly:n(value('pa')),
+    fee:n(value('pf')),
+    other:n(value('po'))
   };
 
-  let k=
+
+  let index=
   db.products.findIndex(
-    x=>x.id===i
+    x=>x.id===editId
   );
 
-  if(k>=0){
 
-    db.products[k]=o;
-
+  if(index>=0){
+    db.products[index]=obj;
   }else{
-
-    db.products.push(o);
-
+    db.products.push(obj);
   }
+
 
   closeModal();
 
@@ -1946,12 +2639,11 @@ function saveProduct(i){
 
 }
 
-function shipmentModal(i=''){
+
+function shipmentModal(editId=''){
 
   let s=
-  db.shipments.find(
-    x=>x.id===i
-  )
+  db.shipments.find(x=>x.id===editId)
   ||
   {
     id:'',
@@ -1965,104 +2657,62 @@ function shipmentModal(i=''){
     volume:85
   };
 
+
   openModal(
-    'Sevkiyat',
+    'Lojistik / Sevkiyat',
     `
 
       <div class="form">
 
         <label>
-          Ad
-          <input
-            id="sn"
-            value="${esc(s.name)}"
-          >
+          Sevkiyat adı
+          <input id="sn" value="${esc(s.name)}">
         </label>
 
         <label>
           Ürün bedeli HT
-          <input
-            id="sg"
-            type="number"
-            step=".01"
-            value="${s.goods}"
-          >
+          <input id="sg" type="number" step=".01" value="${s.goods}">
         </label>
 
         <label>
           Uluslararası nakliye
-          <input
-            id="st"
-            type="number"
-            step=".01"
-            value="${s.transport}"
-          >
+          <input id="st" type="number" step=".01" value="${s.transport}">
         </label>
 
         <label>
-          Gümrük/evrak
-          <input
-            id="sc"
-            type="number"
-            step=".01"
-            value="${s.customs}"
-          >
+          Gümrük / Evrak
+          <input id="sc" type="number" step=".01" value="${s.customs}">
         </label>
 
         <label>
           Yerel nakliye
-          <input
-            id="sl"
-            type="number"
-            step=".01"
-            value="${s.local}"
-          >
+          <input id="sl" type="number" step=".01" value="${s.local}">
         </label>
 
         <label>
-          İndirme
-          <input
-            id="su"
-            type="number"
-            step=".01"
-            value="${s.unload}"
-          >
+          İndirme / yükleme
+          <input id="su" type="number" step=".01" value="${s.unload}">
         </label>
 
         <label>
           Diğer
-          <input
-            id="so"
-            type="number"
-            step=".01"
-            value="${s.other}"
-          >
+          <input id="so" type="number" step=".01" value="${s.other}">
         </label>
 
         <label>
           Hacim m³
-          <input
-            id="sv"
-            type="number"
-            step=".1"
-            value="${s.volume}"
-          >
+          <input id="sv" type="number" step=".1" value="${s.volume}">
         </label>
 
       </div>
 
       <div class="actions">
 
-        <button
-          class="secondary"
-          onclick="closeModal()"
-        >
+        <button class="secondary" onclick="closeModal()">
           Vazgeç
         </button>
 
-        <button
-          onclick="saveShipment('${s.id}')"
-        >
+        <button onclick="saveShipment('${s.id}')">
           Kaydet
         </button>
 
@@ -2073,44 +2723,34 @@ function shipmentModal(i=''){
 
 }
 
-function saveShipment(i){
 
-  let o={
+function saveShipment(editId){
 
-    id:i||id(),
-
-    name:v('sn'),
-
-    goods:n(v('sg')),
-
-    transport:n(v('st')),
-
-    customs:n(v('sc')),
-
-    local:n(v('sl')),
-
-    unload:n(v('su')),
-
-    other:n(v('so')),
-
-    volume:n(v('sv'))
-
+  let obj={
+    id:editId || makeId(),
+    name:value('sn'),
+    goods:n(value('sg')),
+    transport:n(value('st')),
+    customs:n(value('sc')),
+    local:n(value('sl')),
+    unload:n(value('su')),
+    other:n(value('so')),
+    volume:n(value('sv'))
   };
 
-  let k=
+
+  let index=
   db.shipments.findIndex(
-    x=>x.id===i
+    x=>x.id===editId
   );
 
-  if(k>=0){
 
-    db.shipments[k]=o;
-
+  if(index>=0){
+    db.shipments[index]=obj;
   }else{
-
-    db.shipments.push(o);
-
+    db.shipments.push(obj);
   }
+
 
   closeModal();
 
@@ -2118,21 +2758,25 @@ function saveShipment(i){
 
 }
 
+
 function saveSettings(){
 
   db.settings.reserve=
-  n(v('setReserve'));
+  n(value('setReserve'));
 
   db.settings.vat=
-  n(v('setVat'));
+  n(value('setVat'));
 
   save();
 
+  alert('Ayarlar kaydedildi.');
+
 }
+
 
 function backup(){
 
-  let b=
+  let blob=
   new Blob(
     [
       JSON.stringify(
@@ -2146,54 +2790,63 @@ function backup(){
     }
   );
 
-  let a=
+
+  let link=
   document.createElement('a');
 
-  a.href=
-  URL.createObjectURL(b);
 
-  a.download=
-  'istikbal_finans_v3_'+
-  today()+
-  '.json';
+  link.href=
+  URL.createObjectURL(blob);
 
-  a.click();
+
+  link.download=
+  'istikbal_finans_v4_'
+  +today()
+  +'.json';
+
+
+  link.click();
 
 }
 
+
 restore.onchange=e=>{
 
-  let f=e.target.files[0];
+  let file=e.target.files[0];
 
-  if(!f){
-    return
+  if(!file){
+    return;
   }
 
-  let r=
+
+  let reader=
   new FileReader();
 
-  r.onload=()=>{
+
+  reader.onload=()=>{
 
     try{
 
       db=
-      JSON.parse(
-        r.result
-      );
+      JSON.parse(reader.result);
 
       save();
 
-    }catch{
+      alert('Yedek başarıyla yüklendi.');
 
-      alert('Yedek okunamadı');
+    }catch(e){
+
+      alert('Yedek dosyası okunamadı.');
 
     }
 
   };
 
-  r.readAsText(f);
+
+  reader.readAsText(file);
 
 };
+
 
 render();
 
