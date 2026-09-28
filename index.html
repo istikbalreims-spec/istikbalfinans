@@ -1,129 +1,33 @@
 <!doctype html>
-<html lang="tr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>İstikbal Bayi Finans</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="topbar">
-    <div>
-      <h1>İstikbal Bayi Finans & Karlılık Merkezi</h1>
-      <p>Reims · Yönetim paneli</p>
-    </div>
-    <div class="top-actions">
-      <button id="btnExport">Yedek Al</button>
-      <label class="file-btn">Yedek Yükle<input id="importFile" type="file" accept=".json"></label>
-      <button id="btnReset" class="danger-outline">Verileri Sıfırla</button>
-    </div>
-  </header>
-
-  <nav class="tabs">
-    <button class="tab active" data-tab="dashboard">Patron Ekranı</button>
-    <button class="tab" data-tab="products">Ürün Karlılığı</button>
-    <button class="tab" data-tab="shipments">Lojistik</button>
-    <button class="tab" data-tab="expenses">Ödemeler / Giderler</button>
-    <button class="tab" data-tab="cashflow">Nakit Akışı</button>
-    <button class="tab" data-tab="settings">Ayarlar</button>
-  </nav>
-
-  <main>
-    <section id="dashboard" class="panel active">
-      <div class="cards">
-        <div class="card"><span>Banka + Kasa</span><strong id="kpiCash">0 €</strong></div>
-        <div class="card"><span>Ayrılacak Para</span><strong id="kpiReserved">0 €</strong></div>
-        <div class="card accent"><span>Gerçek Serbest Para</span><strong id="kpiFree">0 €</strong></div>
-        <div class="card"><span>Bu Ay Satış</span><strong id="kpiSales">0 €</strong></div>
-        <div class="card"><span>Tahmini Katkı</span><strong id="kpiProfit">0 €</strong></div>
-        <div class="card"><span>30 Günlük Ödeme</span><strong id="kpiDue30">0 €</strong></div>
-      </div>
-
-      <div class="grid2">
-        <div class="box">
-          <div class="box-title">Finans Uzmanı Yorumu</div>
-          <div id="advisor" class="advisor"></div>
-        </div>
-        <div class="box">
-          <div class="box-title">Yaklaşan Ödemeler</div>
-          <div id="upcoming"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" class="panel">
-      <div class="section-head">
-        <div><h2>Ürün Karlılığı</h2><p>Alış + lojistik + teslimat + montaj + komisyon sonrası gerçek marj.</p></div>
-        <button onclick="openProductModal()">+ Yeni Ürün</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Model</th><th>Alış HT</th><th>Satış TTC</th><th>Gerçek Maliyet</th><th>Katkı</th><th>Marj</th><th></th></tr></thead>
-          <tbody id="productRows"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="shipments" class="panel">
-      <div class="section-head">
-        <div><h2>Lojistik / Konteyner</h2><p>Sevkiyat başına toplam maliyet ve m³ başına lojistik.</p></div>
-        <button onclick="openShipmentModal()">+ Yeni Sevkiyat</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Sevkiyat</th><th>Ürün Bedeli</th><th>Lojistik</th><th>Hacim</th><th>Lojistik / m³</th><th>Toplam</th><th></th></tr></thead>
-          <tbody id="shipmentRows"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="expenses" class="panel">
-      <div class="section-head">
-        <div><h2>Ödemeler / Giderler</h2><p>Kira, tedarikçi, maaş, vergi, araç, reklam ve diğer tüm giderler.</p></div>
-        <button onclick="openExpenseModal()">+ Yeni Ödeme</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Vade</th><th>Kategori</th><th>Kime</th><th>Açıklama</th><th>Tutar</th><th>Öncelik</th><th>Durum</th><th></th></tr></thead>
-          <tbody id="expenseRows"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="cashflow" class="panel">
-      <div class="section-head">
-        <div><h2>Nakit Akışı</h2><p>Bugünkü nakit ve yaklaşan zorunlu ödemelere göre güvenli bakiye.</p></div>
-        <button onclick="openCashModal()">Banka / Kasa Güncelle</button>
-      </div>
-      <div class="cash-banner">
-        <div><span>Banka</span><strong id="bankVal">0 €</strong></div>
-        <div><span>Kasa</span><strong id="cashVal">0 €</strong></div>
-        <div><span>Toplam</span><strong id="totalCashVal">0 €</strong></div>
-      </div>
-      <div class="box">
-        <div class="box-title">Önümüzdeki 60 Gün</div>
-        <div id="cashProjection"></div>
-      </div>
-    </section>
-
-    <section id="settings" class="panel">
-      <div class="box settings-box">
-        <div class="box-title">Finans Ayarları</div>
-        <label>Aylık ciro hedefi TTC (€)<input id="setTarget" type="number"></label>
-        <label>Minimum güvenlik kasası (€)<input id="setBuffer" type="number"></label>
-        <label>Varsayılan TVA oranı (%)<input id="setVat" type="number"></label>
-        <button onclick="saveSettings()">Ayarları Kaydet</button>
-      </div>
-    </section>
-  </main>
-
-  <div id="modal" class="modal hidden">
-    <div class="modal-card">
-      <div class="modal-head"><h3 id="modalTitle"></h3><button class="icon-btn" onclick="closeModal()">✕</button></div>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>İstikbal Bayi Finans v2</title>
+<style>
+:root{--bg:#f5f6f8;--p:#fff;--ink:#181a1f;--muted:#6e7580;--line:#e2e5e9;--red:#c8102e;--ok:#16794b;--bad:#b42318;--warn:#a76500}*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}header{background:#111318;color:#fff;padding:18px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center}header h1{margin:0;font-size:23px}header p{margin:4px 0 0;color:#b8bdc7}button{border:0;border-radius:8px;padding:10px 14px;background:var(--red);color:#fff;font-weight:700;cursor:pointer}.tabs{display:flex;gap:4px;background:#fff;border-bottom:1px solid var(--line);padding:0 16px;overflow:auto}.tab{background:transparent;color:#4d535b;border-radius:0;border-bottom:3px solid transparent;padding:14px 12px}.tab.active{color:var(--red);border-bottom-color:var(--red)}main{padding:18px}.panel{display:none}.panel.active{display:block}.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:15px}.card,.box,.acct{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px}.card span,.muted{color:var(--muted);font-size:13px}.card strong{display:block;font-size:22px;margin-top:10px}.accent{border-top:4px solid var(--red)}.accounts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:15px}.acct h3{margin:0 0 10px}.line{display:flex;justify-content:space-between;margin:7px 0}.available{color:var(--ok);font-weight:800}.grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:15px}.advisor p{padding:10px;border-radius:8px;background:#f7f8fa}.advisor .bad{background:#fff0ee;color:#8d2017}.advisor .warn{background:#fff7e8;color:#744900}.advisor .ok{background:#eef9f2;color:#145c3b}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.table{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{background:#f8f9fb;font-size:12px;color:#626973}.small{padding:6px 8px;background:#343942}.danger{background:#9f2b22}.modal{position:fixed;inset:0;background:#0007;display:flex;align-items:center;justify-content:center;padding:18px}.hidden{display:none}.modal-card{background:#fff;border-radius:12px;width:min(650px,100%);max-height:90vh;overflow:auto}.mh{display:flex;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--line)}.mb{padding:18px}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{font-weight:600;color:#4b515a}input,select{width:100%;padding:10px;border:1px solid #cfd4da;border-radius:8px;margin-top:5px}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.secondary{background:#666}@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.accounts,.grid2{grid-template-columns:1fr}}
+</style></head><body>
+<header><div><h1>İstikbal Bayi Finans & Karlılık Merkezi</h1><p>Reims · Finans Uzmanı Paneli</p></div><button onclick="backup()">Yedek Al</button></header>
+<nav class="tabs"><button class="tab active" data-p="dash">Patron Ekranı</button><button class="tab" data-p="cash">Banka / Kasa</button><button class="tab" data-p="exp">Ödemeler / Giderler</button><button class="tab" data-p="prod">Ürün Karlılığı</button><button class="tab" data-p="log">Lojistik</button><button class="tab" data-p="set">Ayarlar</button></nav>
+<main>
+<section id="dash" class="panel active"><div class="cards"><div class="card"><span>Mevcut Toplam</span><strong id="kCur">0 €</strong></div><div class="card"><span>Bekleyen Sonrası</span><strong id="kAvail">0 €</strong></div><div class="card"><span>Ayrılacak Para</span><strong id="kRes">0 €</strong></div><div class="card accent"><span>Gerçek Serbest Para</span><strong id="kFree">0 €</strong></div><div class="card"><span>30 Günlük Ödeme</span><strong id="kDue">0 €</strong></div></div><div id="acctCards" class="accounts"></div><div class="grid2"><div class="box"><h3>Finans Uzmanı Yorumu</h3><div id="advisor" class="advisor"></div></div><div class="box"><h3>Yaklaşan Ödemeler</h3><div id="upcoming"></div></div></div></section>
+<section id="cash" class="panel"><div class="section-head"><div><h2>Banka / Kasa</h2><div class="muted">Her hesabı ayrı takip et.</div></div><button onclick="openAccount()">+ Hesap Ekle</button></div><div class="table"><table><thead><tr><th>Hesap</th><th>Tür</th><th>Mevcut</th><th>Bekleyen</th><th>Kullanılabilir</th><th></th></tr></thead><tbody id="acctRows"></tbody></table></div></section>
+<section id="exp" class="panel"><div class="section-head"><h2>Ödemeler / Giderler</h2><button onclick="openExpense()">+ Yeni Ödeme</button></div><div class="table"><table><thead><tr><th>Vade</th><th>Kategori</th><th>Kime</th><th>Açıklama</th><th>Tutar</th><th>Öncelik</th><th>Durum</th><th></th></tr></thead><tbody id="expRows"></tbody></table></div></section>
+<section id="prod" class="panel"><div class="section-head"><h2>Ürün Karlılığı</h2><button onclick="openProduct()">+ Yeni Ürün</button></div><div class="table"><table><thead><tr><th>Model</th><th>Alış HT</th><th>Satış TTC</th><th>Gerçek Maliyet</th><th>Katkı</th><th>Marj</th><th></th></tr></thead><tbody id="prodRows"></tbody></table></div></section>
+<section id="log" class="panel"><div class="section-head"><h2>Lojistik / Konteyner</h2><button onclick="openShipment()">+ Yeni Sevkiyat</button></div><div class="table"><table><thead><tr><th>Sevkiyat</th><th>Ürün Bedeli</th><th>Lojistik</th><th>Hacim</th><th>€/m³</th><th>Toplam</th><th></th></tr></thead><tbody id="shipRows"></tbody></table></div></section>
+<section id="set" class="panel"><div class="box" style="max-width:560px"><h3>Ayarlar</h3><label>Aylık ciro hedefi (€)<input id="target" type="number"></label><label>Minimum güvenlik rezervi (€)<input id="buffer" type="number"></label><label>Varsayılan TVA (%)<input id="vat" type="number"></label><br><button onclick="saveSettings()">Kaydet</button></div></section>
+</main><div id="modal" class="modal hidden"><div class="modal-card"><div class="mh"><strong id="mt"></strong><button class="secondary" onclick="closeM()">✕</button></div><div id="mb" class="mb"></div></div></div>
+<script>
+const K='istikbal_finans_single_v2';const D={accounts:[{id:'ag',name:'Crédit Agricole',type:'Banka',balance:11478.44,pending:4483},{id:'ce',name:"Caisse d'Épargne",type:'Banka',balance:7439.21,pending:160.37},{id:'ca',name:'Kasa / Nakit',type:'Kasa',balance:0,pending:0}],expenses:[],products:[],shipments:[],settings:{target:75000,buffer:10000,vat:20}};let db=load();function clone(x){return JSON.parse(JSON.stringify(x))}function load(){try{return JSON.parse(localStorage.getItem(K))||clone(D)}catch(e){return clone(D)}}function save(){localStorage.setItem(K,JSON.stringify(db));render()}function n(v){return Number(String(v??'').replace(',','.').replace(/\s/g,''))||0}function e(v){return new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(n(v))}function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}function today(){return new Date().toISOString().slice(0,10)}function plus(d){let x=new Date();x.setDate(x.getDate()+d);return x.toISOString().slice(0,10)}function av(a){return n(a.balance)-n(a.pending)}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.p).classList.add('active')});
+function render(){renderAccounts();renderExp();renderProd();renderShip();renderDash();target.value=db.settings.target;buffer.value=db.settings.buffer;vat.value=db.settings.vat}
+function renderAccounts(){acctRows.innerHTML=db.accounts.map(a=>`<tr><td><b>${esc(a.name)}</b></td><td>${a.type}</td><td>${e(a.balance)}</td><td>${e(a.pending)}</td><td><b>${e(av(a))}</b></td><td><button class="small" onclick="openAccount('${a.id}')">Düzelt</button> <button class="small danger" onclick="delA('${a.id}')">Sil</button></td></tr>`).join('');acctCards.innerHTML=db.accounts.map(a=>`<div class="acct"><h3>${esc(a.name)}</h3><div class="line"><span>Mevcut</span><b>${e(a.balance)}</b></div><div class="line"><span>Bekleyen</span><b>${e(a.pending)}</b></div><div class="line available"><span>Kullanılabilir</span><b>${e(av(a))}</b></div></div>`).join('')}
+function renderDash(){let cur=db.accounts.reduce((s,a)=>s+n(a.balance),0),avail=db.accounts.reduce((s,a)=>s+av(a),0),un=db.expenses.filter(x=>x.status!='Ödendi'),due=un.filter(x=>x.due>=today()&&x.due<=plus(30)).reduce((s,x)=>s+n(x.amount),0),must=un.filter(x=>['Zorunlu','Yüksek'].includes(x.priority)).reduce((s,x)=>s+n(x.amount),0),res=must+n(db.settings.buffer),free=avail-res;kCur.textContent=e(cur);kAvail.textContent=e(avail);kRes.textContent=e(res);kFree.textContent=e(free);kDue.textContent=e(due);let a=[`<p>Hesaplarda görünen toplam <b>${e(cur)}</b>.</p>`,`<p>Bekleyen işlemler sonrası kullanılabilir yaklaşık <b>${e(avail)}</b>.</p>`,`<p>Zorunlu/yüksek ödemeler + güvenlik rezervi için <b>${e(res)}</b> ayır.</p>`];a.push(free<0?`<p class="bad">Gerçek serbest para <b>${e(free)}</b>. Yeni stok ve ertelenebilir harcamayı sınırlamak gerekir.</p>`:free<n(db.settings.buffer)?`<p class="warn">Serbest para <b>${e(free)}</b>. Büyük ödeme öncesi dikkat.</p>`:`<p class="ok">Serbest para <b>${e(free)}</b>. Güvenlik tamponunun üzerindesin.</p>`);advisor.innerHTML=a.join('');let rows=[...un].sort((a,b)=>a.due.localeCompare(b.due)).slice(0,8);upcoming.innerHTML=rows.length?rows.map(x=>`<p>${x.due} — ${esc(x.supplier||x.category)} — <b>${e(x.amount)}</b></p>`).join(''):'Yaklaşan ödeme yok.'}
+function renderExp(){expRows.innerHTML=db.expenses.map(x=>`<tr><td>${x.due}</td><td>${x.category}</td><td>${esc(x.supplier)}</td><td>${esc(x.desc)}</td><td>${e(x.amount)}</td><td>${x.priority}</td><td>${x.status}</td><td>${x.status!='Ödendi'?`<button class="small" onclick="paid('${x.id}')">Ödendi</button>`:''} <button class="small danger" onclick="del('expenses','${x.id}')">Sil</button></td></tr>`).join('')||'<tr><td colspan="8">Henüz ödeme yok.</td></tr>'}
+function pc(p){let ht=n(p.sale)/(1+n(p.vat)/100),cost=n(p.buy)+n(p.log)+n(p.del)+n(p.ass)+n(p.fee)+n(p.other),profit=ht-cost;return{cost,profit,margin:ht?profit/ht*100:0}}
+function renderProd(){prodRows.innerHTML=db.products.map(p=>{let c=pc(p);return`<tr><td><b>${esc(p.name)}</b></td><td>${e(p.buy)}</td><td>${e(p.sale)}</td><td>${e(c.cost)}</td><td>${e(c.profit)}</td><td>${c.margin.toFixed(1)}%</td><td><button class="small" onclick="openProduct('${p.id}')">Düzelt</button> <button class="small danger" onclick="del('products','${p.id}')">Sil</button></td></tr>`}).join('')||'<tr><td colspan="7">Henüz ürün yok.</td></tr>'}
+function sc(s){let l=n(s.trans)+n(s.customs)+n(s.local)+n(s.unload)+n(s.other);return{l,pm:n(s.vol)?l/n(s.vol):0,total:n(s.goods)+l}}
+function renderShip(){shipRows.innerHTML=db.shipments.map(s=>{let c=sc(s);return`<tr><td>${esc(s.name)}</td><td>${e(s.goods)}</td><td>${e(c.l)}</td><td>${n(s.vol)} m³</td><td>${e(c.pm)}</td><td>${e(c.total)}</td><td><button class="small" onclick="openShipment('${s.id}')">Düzelt</button> <button class="small danger" onclick="del('shipments','${s.id}')">Sil</button></td></tr>`}).join('')||'<tr><td colspan="7">Henüz sevkiyat yok.</td></tr>'}
+function M(t,h){mt.textContent=t;mb.innerHTML=h;modal.classList.remove('hidden')}function closeM(){modal.classList.add('hidden')}function V(i){return document.getElementById(i).value}
+function openAccount(i=''){let a=db.accounts.find(x=>x.id==i)||{id:'',name:'',type:'Banka',balance:0,pending:0};M(i?'Hesabı Düzenle':'Yeni Hesap',`<div class="form"><label>Hesap adı<input id="an" value="${esc(a.name)}"></label><label>Tür<select id="at"><option ${a.type=='Banka'?'selected':''}>Banka</option><option ${a.type=='Kasa'?'selected':''}>Kasa</option></select></label><label>Mevcut bakiye<input id="ab" type="number" step="0.01" value="${a.balance}"></label><label>Bekleyen işlemler<input id="ap" type="number" step="0.01" value="${a.pending}"></label></div><div class="actions"><button class="secondary" onclick="closeM()">Vazgeç</button><button onclick="saveA('${a.id}')">Kaydet</button></div>`)}function saveA(i){let o={id:i||id(),name:V('an'),type:V('at'),balance:n(V('ab')),pending:n(V('ap'))},k=db.accounts.findIndex(x=>x.id==i);k>=0?db.accounts[k]=o:db.accounts.push(o);closeM();save()}function delA(i){if(confirm('Hesap silinsin mi?')){db.accounts=db.accounts.filter(x=>x.id!=i);save()}}
+function openExpense(){M('Yeni Ödeme',`<div class="form"><label>Vade<input id="ed" type="date" value="${today()}"></label><label>Kategori<select id="ec"><option>Tedarikçi</option><option>Kira</option><option>Maaş</option><option>TVA / Vergi</option><option>URSSAF</option><option>Kredi</option><option>Depo</option><option>Araç / Yakıt</option><option>Reklam</option><option>Enerji</option><option>Diğer</option></select></label><label>Kime<input id="es"></label><label>Tutar<input id="ea" type="number" step="0.01"></label><label>Açıklama<input id="ex"></label><label>Öncelik<select id="ep"><option>Zorunlu</option><option>Yüksek</option><option>Normal</option><option>Ertelenebilir</option></select></label></div><div class="actions"><button onclick="saveE()">Kaydet</button></div>`)}function saveE(){db.expenses.push({id:id(),due:V('ed'),category:V('ec'),supplier:V('es'),amount:n(V('ea')),desc:V('ex'),priority:V('ep'),status:'Ödenecek'});closeM();save()}function paid(i){let x=db.expenses.find(x=>x.id==i);if(x){x.status='Ödendi';save()}}
+function openProduct(i=''){let p=db.products.find(x=>x.id==i)||{id:'',name:'',buy:0,sale:0,vat:db.settings.vat,log:0,del:0,ass:0,fee:0,other:0};M(i?'Ürünü Düzenle':'Yeni Ürün',`<div class="form"><label>Model<input id="pn" value="${esc(p.name)}"></label><label>Alış HT<input id="pb" type="number" value="${p.buy}"></label><label>Satış TTC<input id="ps" type="number" value="${p.sale}"></label><label>TVA %<input id="pv" type="number" value="${p.vat}"></label><label>Lojistik payı<input id="pl" type="number" value="${p.log}"></label><label>Teslimat<input id="pd" type="number" value="${p.del}"></label><label>Montaj<input id="pa" type="number" value="${p.ass}"></label><label>Komisyon<input id="pf" type="number" value="${p.fee}"></label><label>Diğer<input id="po" type="number" value="${p.other}"></label></div><div class="actions"><button onclick="saveP('${p.id}')">Kaydet</button></div>`)}function saveP(i){let o={id:i||id(),name:V('pn'),buy:n(V('pb')),sale:n(V('ps')),vat:n(V('pv')),log:n(V('pl')),del:n(V('pd')),ass:n(V('pa')),fee:n(V('pf')),other:n(V('po'))},k=db.products.findIndex(x=>x.id==i);k>=0?db.products[k]=o:db.products.push(o);closeM();save()}
+function openShipment(i=''){let s=db.shipments.find(x=>x.id==i)||{id:'',name:'Konteyner',goods:0,trans:0,customs:0,local:0,unload:0,other:0,vol:85};M(i?'Sevkiyatı Düzenle':'Yeni Sevkiyat',`<div class="form"><label>Ad<input id="sn" value="${esc(s.name)}"></label><label>Ürün bedeli HT<input id="sg" type="number" value="${s.goods}"></label><label>Uluslararası nakliye<input id="st" type="number" value="${s.trans}"></label><label>Gümrük/Evrak<input id="sc" type="number" value="${s.customs}"></label><label>Yerel nakliye<input id="sl" type="number" value="${s.local}"></label><label>İndirme/Yükleme<input id="su" type="number" value="${s.unload}"></label><label>Diğer<input id="so" type="number" value="${s.other}"></label><label>Hacim m³<input id="sv" type="number" value="${s.vol}"></label></div><div class="actions"><button onclick="saveS('${s.id}')">Kaydet</button></div>`)}function saveS(i){let o={id:i||id(),name:V('sn'),goods:n(V('sg')),trans:n(V('st')),customs:n(V('sc')),local:n(V('sl')),unload:n(V('su')),other:n(V('so')),vol:n(V('sv'))},k=db.shipments.findIndex(x=>x.id==i);k>=0?db.shipments[k]=o:db.shipments.push(o);closeM();save()}
+function del(c,i){if(confirm('Kayıt silinsin mi?')){db[c]=db[c].filter(x=>x.id!=i);save()}}function saveSettings(){db.settings={target:n(target.value),buffer:n(buffer.value),vat:n(vat.value)};save();alert('Kaydedildi')}function backup(){let b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='istikbal_finans_yedek.json';a.click()}render();
+</script></body></html>
