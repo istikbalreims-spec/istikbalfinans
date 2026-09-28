@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İstikbal Bayi Finans</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>İstikbal Bayi Finans & Karlılık Merkezi</h1>
+      <p>Reims · Yönetim paneli</p>
+    </div>
+    <div class="top-actions">
+      <button id="btnExport">Yedek Al</button>
+      <label class="file-btn">Yedek Yükle<input id="importFile" type="file" accept=".json"></label>
+      <button id="btnReset" class="danger-outline">Verileri Sıfırla</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">Patron Ekranı</button>
+    <button class="tab" data-tab="products">Ürün Karlılığı</button>
+    <button class="tab" data-tab="shipments">Lojistik</button>
+    <button class="tab" data-tab="expenses">Ödemeler / Giderler</button>
+    <button class="tab" data-tab="cashflow">Nakit Akışı</button>
+    <button class="tab" data-tab="settings">Ayarlar</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="panel active">
+      <div class="cards">
+        <div class="card"><span>Banka + Kasa</span><strong id="kpiCash">0 €</strong></div>
+        <div class="card"><span>Ayrılacak Para</span><strong id="kpiReserved">0 €</strong></div>
+        <div class="card accent"><span>Gerçek Serbest Para</span><strong id="kpiFree">0 €</strong></div>
+        <div class="card"><span>Bu Ay Satış</span><strong id="kpiSales">0 €</strong></div>
+        <div class="card"><span>Tahmini Katkı</span><strong id="kpiProfit">0 €</strong></div>
+        <div class="card"><span>30 Günlük Ödeme</span><strong id="kpiDue30">0 €</strong></div>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="box-title">Finans Uzmanı Yorumu</div>
+          <div id="advisor" class="advisor"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">Yaklaşan Ödemeler</div>
+          <div id="upcoming"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="panel">
+      <div class="section-head">
+        <div><h2>Ürün Karlılığı</h2><p>Alış + lojistik + teslimat + montaj + komisyon sonrası gerçek marj.</p></div>
+        <button onclick="openProductModal()">+ Yeni Ürün</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Model</th><th>Alış HT</th><th>Satış TTC</th><th>Gerçek Maliyet</th><th>Katkı</th><th>Marj</th><th></th></tr></thead>
+          <tbody id="productRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="shipments" class="panel">
+      <div class="section-head">
+        <div><h2>Lojistik / Konteyner</h2><p>Sevkiyat başına toplam maliyet ve m³ başına lojistik.</p></div>
+        <button onclick="openShipmentModal()">+ Yeni Sevkiyat</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sevkiyat</th><th>Ürün Bedeli</th><th>Lojistik</th><th>Hacim</th><th>Lojistik / m³</th><th>Toplam</th><th></th></tr></thead>
+          <tbody id="shipmentRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="expenses" class="panel">
+      <div class="section-head">
+        <div><h2>Ödemeler / Giderler</h2><p>Kira, tedarikçi, maaş, vergi, araç, reklam ve diğer tüm giderler.</p></div>
+        <button onclick="openExpenseModal()">+ Yeni Ödeme</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Vade</th><th>Kategori</th><th>Kime</th><th>Açıklama</th><th>Tutar</th><th>Öncelik</th><th>Durum</th><th></th></tr></thead>
+          <tbody id="expenseRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="cashflow" class="panel">
+      <div class="section-head">
+        <div><h2>Nakit Akışı</h2><p>Bugünkü nakit ve yaklaşan zorunlu ödemelere göre güvenli bakiye.</p></div>
+        <button onclick="openCashModal()">Banka / Kasa Güncelle</button>
+      </div>
+      <div class="cash-banner">
+        <div><span>Banka</span><strong id="bankVal">0 €</strong></div>
+        <div><span>Kasa</span><strong id="cashVal">0 €</strong></div>
+        <div><span>Toplam</span><strong id="totalCashVal">0 €</strong></div>
+      </div>
+      <div class="box">
+        <div class="box-title">Önümüzdeki 60 Gün</div>
+        <div id="cashProjection"></div>
+      </div>
+    </section>
+
+    <section id="settings" class="panel">
+      <div class="box settings-box">
+        <div class="box-title">Finans Ayarları</div>
+        <label>Aylık ciro hedefi TTC (€)<input id="setTarget" type="number"></label>
+        <label>Minimum güvenlik kasası (€)<input id="setBuffer" type="number"></label>
+        <label>Varsayılan TVA oranı (%)<input id="setVat" type="number"></label>
+        <button onclick="saveSettings()">Ayarları Kaydet</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head"><h3 id="modalTitle"></h3><button class="icon-btn" onclick="closeModal()">✕</button></div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
